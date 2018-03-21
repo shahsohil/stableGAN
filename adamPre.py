@@ -92,8 +92,8 @@ class AdamPre(Optimizer):
                 if p.grad is None:
                     continue
                 state = self.state[p]
-                state['oldWeights'].copy_(p.data)
                 temp_grad = p.data.sub(state['oldWeights'])
+                state['oldWeights'].copy_(p.data)
                 p.data.add_(temp_grad)
         return loss
 
