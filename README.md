@@ -34,3 +34,6 @@ Please see sample code for [MoG](mogdata.py) to understand the minor details. Th
 $python main.py --pdhgGLookAhead --cuda --outf results/ --manualSeed 6162 --plotLoss --plotRealData
 ```
 ![Gaussian](results/all.png)
+
+## Other Implementations ##
+* [PyTorch Implementation](https://github.com/sanghoon/prediction_gan) with other Optimizer and sample experimental results for DCGAN network
