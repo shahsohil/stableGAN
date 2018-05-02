@@ -1,4 +1,4 @@
-# stableGAN #
+# Prediction GAN #
 
 ## Introduction ##
 This is a Pytorch implementation of the Prediction method presented in the following paper:
