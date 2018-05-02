@@ -36,4 +36,4 @@ $python main.py --pdhgGLookAhead --cuda --outf results/ --manualSeed 6162 --plot
 ![Gaussian](results/all.png)
 
 ## Other Implementations ##
-* [PyTorch Implementation](https://github.com/sanghoon/prediction_gan) with other Optimizer and sample experimental results for DCGAN network
+* [PyTorch Implementation](https://github.com/sanghoon/prediction_gan) with other optimizers + sample experimental results on DCGAN network.
