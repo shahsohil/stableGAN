@@ -314,7 +314,7 @@ def main():
         else:
             plt.subplot(1,cols,i+1, sharex=ax, sharey=ax)
         ax2 = sns.kdeplot(samps[:, 0], samps[:, 1], shade=True, cmap='Greens', n_levels=nLevels, clip=[[-xmax,xmax]]*2)
-        ax2.set_axis_bgcolor(bg_color)
+        ax2.set_facecolor(bg_color)
         plt.xticks([]); plt.yticks([])
         plt.title('step %d'%(i*opt.viz_every))
 
