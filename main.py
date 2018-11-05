@@ -12,7 +12,7 @@ import torch.backends.cudnn as cudnn
 import torch.utils.data
 from torch.autograd import Variable
 import matplotlib.pyplot as plt
-import seaborn as sns
+#import seaborn as sns
 import warnings
 warnings.filterwarnings("ignore")
 
@@ -302,33 +302,33 @@ def main():
 
 
     # Final KDE plot for paper. It also plots log likelihood
-    xmax = 1.3
-    nLevels = 20
-    np_samples_ = np_samples[::1]
-    cols = len(np_samples_)
-    bg_color  = sns.color_palette('Greens', n_colors=256)[0]
-    plt.figure(figsize=(2*cols, 2))
-    for i, samps in enumerate(np_samples_):
-        if i == 0:
-            ax = plt.subplot(1,cols,1)
-        else:
-            plt.subplot(1,cols,i+1, sharex=ax, sharey=ax)
-        ax2 = sns.kdeplot(samps[:, 0], samps[:, 1], shade=True, cmap='Greens', n_levels=nLevels, clip=[[-xmax,xmax]]*2)
-        ax2.set_axis_bgcolor(bg_color)
-        plt.xticks([]); plt.yticks([])
-        plt.title('step %d'%(i*opt.viz_every))
+    # xmax = 1.3
+    # nLevels = 20
+    # np_samples_ = np_samples[::1]
+    # cols = len(np_samples_)
+    # bg_color  = sns.color_palette('Greens', n_colors=256)[0]
+    # plt.figure(figsize=(2*cols, 2))
+    # for i, samps in enumerate(np_samples_):
+    #     if i == 0:
+    #         ax = plt.subplot(1,cols,1)
+    #     else:
+    #         plt.subplot(1,cols,i+1, sharex=ax, sharey=ax)
+    #     ax2 = sns.kdeplot(samps[:, 0], samps[:, 1], shade=True, cmap='Greens', n_levels=nLevels, clip=[[-xmax,xmax]]*2)
+    #     ax2.set_facecolor(bg_color)
+    #     plt.xticks([]); plt.yticks([])
+    #     plt.title('step %d'%(i*opt.viz_every))
 
-    plt.gcf().tight_layout()
-    plt.savefig('{0}/all.png'.format(opt.outf))
+    # plt.gcf().tight_layout()
+    # plt.savefig('{0}/all.png'.format(opt.outf))
 
-    if opt.plotLoss:
-        plt.figure()
-        fs = np.array(fs)
-        plt.plot(fs)
-        plt.legend(('Discriminator loss', 'Generator loss'))
-        plt.savefig('{0}/losses.pdf'.format(opt.outf))
+    # if opt.plotLoss:
+    #     plt.figure()
+    #     fs = np.array(fs)
+    #     plt.plot(fs)
+    #     plt.legend(('Discriminator loss', 'Generator loss'))
+    #     plt.savefig('{0}/losses.pdf'.format(opt.outf))
 
-    plt.close('all')
+    # plt.close('all')
 
 
 # custom weights initialization called on netG and netD
