@@ -75,7 +75,7 @@ class _netG(nn.Module):
         )
 
     def forward(self, input):
-        if isinstance(input.data, torch.cuda.FloatTensor) and self.ngpu > 1:
+        if self.ngpu > 1 and isinstance(input.data, torch.cuda.FloatTensor):
             output = nn.parallel.data_parallel(self.main, input, range(self.ngpu))
         else:
             output = self.main(input)
@@ -96,7 +96,7 @@ class _netD(nn.Module):
         )
 
     def forward(self, input):
-        if isinstance(input.data, torch.cuda.FloatTensor) and self.ngpu > 1:
+        if self.ngpu > 1 and isinstance(input.data, torch.cuda.FloatTensor):
             output = nn.parallel.data_parallel(self.main, input, range(self.ngpu))
         else:
             output = self.main(input)
@@ -120,8 +120,6 @@ def main():
     np.random.seed(opt.manualSeed)
     torch.manual_seed(opt.manualSeed)
 
-    ngpu = int(opt.ngpu)
-
     if opt.cuda:
         torch.cuda.manual_seed_all(opt.manualSeed)
         torch.backends.cudnn.enabled = False
@@ -129,8 +127,14 @@ def main():
 
     cudnn.benchmark = True
 
-    if torch.cuda.is_available() and not opt.cuda:
-        print("WARNING: You have a CUDA device, so you should probably run with --cuda")
+    if torch.cuda.is_available():
+        ngpu = int(opt.ngpu)
+        if not opt.cuda:
+            print("WARNING: You have a CUDA device, so you should probably run with --cuda")
+    else:
+        if int(opt.ngpu) > 0:
+            print("WARNING: CUDA not available, cannot use --ngpu =", opt.ngpu)
+        ngpu = 0
 
     # Initializing Generator and Discriminator Network
     nz = int(opt.nz)

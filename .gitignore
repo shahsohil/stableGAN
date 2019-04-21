@@ -1,0 +1,6 @@
+__pycache__
+.DS_Store
+.DS_store
+*.pdf
+*.png
+*.pth
